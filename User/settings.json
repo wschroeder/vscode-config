@@ -73,6 +73,14 @@
         {
             "before": ["%"],
             "commands": ["editor.action.jumpToBracket"]
+        },
+        {
+            "before": ["<leader>", "l"],
+            "commands": ["wiki.openWiki"]
+        },
+        {
+            "before": ["<leader>", "s"],
+            "commands": ["wiki.searchWiki"]
         }
     ],
     "workbench.editor.enablePreview": false,
