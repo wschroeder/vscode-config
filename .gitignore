@@ -1,0 +1,9 @@
+*
+
+# Since there are all kinds of files in the Cursor folder, we will simply
+# reverse logic to whitelist exactly what we want:
+
+!README.md
+!User/keybindings.json
+!User/settings.json
+

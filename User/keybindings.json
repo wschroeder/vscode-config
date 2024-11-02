@@ -1,0 +1,11 @@
+// Place your key bindings in this file to override the defaults
+[
+  {
+    "key": "alt+j",
+    "command": "workbench.action.nextEditor"
+  },
+  {
+    "key": "alt+k",
+    "command": "workbench.action.previousEditor"
+  }
+]
