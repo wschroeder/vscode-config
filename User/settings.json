@@ -31,6 +31,12 @@
                 "settings": {
                     "foreground": "#404040",
                 }
+            },
+            {
+                "scope": "markup.fenced_code.block.markdown",
+                "settings": {
+                    "foreground": "#98C379"
+                }
             }
         ]
     },
