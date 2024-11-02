@@ -87,6 +87,24 @@
         {
             "before": ["<leader>", "s"],
             "commands": ["wiki.searchWiki"]
+        },
+        {
+            "before": ["<leader>", "v", "d"],
+            "commands": [
+                {
+                    "command": "workbench.action.terminal.new"
+                },
+                {
+                    "command": "workbench.action.terminal.sendSequence",
+                    "args": {
+                        "text": "cd \"${userHome}/Library/Application Support/$(if echo '${execPath}' | grep -q 'Cursor'; then echo Cursor; else echo Code; fi)\"\r"
+                    }
+                }
+            ]
+        },
+        {
+            "before": ["<leader>", "v", "e"],
+            "commands": ["workbench.action.openSettingsJson"]
         }
     ],
     "workbench.editor.enablePreview": false,
