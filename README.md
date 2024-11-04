@@ -27,7 +27,7 @@ This is probably the same setup approach as for VS Code.
 
    * Vim by vscodevim
    * Nix Environment Selector by arrterian
-   * ESLint by dbaeumer
+   * Run on Save by emeraldwalk
    * ElixirLS: Elixir support and debugger by JakeBecker
    * VS Code Wiki by Yunseok
 

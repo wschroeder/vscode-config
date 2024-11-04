@@ -1,7 +1,4 @@
 {
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "explicit"
-    },
     "editor.inlineSuggest.enabled": true,
     "editor.renderWhitespace": "none",
     "editor.tabSize": 2,
@@ -46,14 +43,14 @@
     "elixirLS.envVariables": {},
     "elixirLS.fetchDeps": true,
     "elixirLS.mixEnv": "dev",
-    "eslint.enable": true,
-    "eslint.format.enable": true,
-    "eslint.rules.customizations": [
-        {
-            "rule": "*",
-            "severity": "off"
-        }
-    ],
+    "emeraldwalk.runonsave": {
+        "commands": [
+            {
+                "match": "\\.(ts|tsx|js|jsx)$",
+                "cmd": "nix-shell --command \"eslint --fix ${file}\""
+            }
+        ]
+    },
     "explorer.confirmDragAndDrop": false,
     "javascript.preferences.importModuleSpecifier": "relative",
     "javascript.updateImportsOnFileMove.enabled": "always",
@@ -111,9 +108,6 @@
     "workbench.editor.enablePreview": false,
     "[elixir]": {
         "editor.defaultFormatter": "JakeBecker.elixir-ls"
-    },
-    "[javascript]": {
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
     },
     "[python]": {
         "editor.formatOnType": true
