@@ -121,6 +121,12 @@
             ]
         }
     ],
+    "vim.operatorPendingModeKeyBindings": [
+        {
+            "before": ["s"],
+            "after": ["t", "_"]
+        }
+    ],
     "vim.visualModeKeyBindingsNonRecursive": [
         {
             "before": ["="],
