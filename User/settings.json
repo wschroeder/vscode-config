@@ -123,7 +123,7 @@
     ],
     "vim.operatorPendingModeKeyBindings": [
         {
-            "before": ["s"],
+            "before": ["z"],
             "after": ["t", "_"]
         }
     ],
