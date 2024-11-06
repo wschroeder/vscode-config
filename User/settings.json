@@ -67,6 +67,10 @@
     "vim.leader": "<space>",
     "vim.normalModeKeyBindingsNonRecursive": [
         {
+            "before": ["=", "="],
+            "commands": ["editor.action.reindentselectedlines"]
+        },
+        {
             "before": ["u"],
             "commands": ["undo"]
         },
@@ -103,6 +107,24 @@
         {
             "before": ["<leader>", "v", "e"],
             "commands": ["workbench.action.openSettingsJson"]
+        },
+        {
+            "before": ["<leader>", "i"],
+            "commands": [
+                {
+                    "command": "editor.action.insertLineAfter"
+                },
+                {
+                    "command": "editor.action.insertSnippet",
+                    "args": { "snippet": "|> IO.inspect(limit: :infinity, pretty: true)" }
+                }
+            ]
+        }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": ["="],
+            "commands": ["editor.action.reindentselectedlines", "extension.vim_escape"],
         }
     ],
     "workbench.editor.enablePreview": false,
