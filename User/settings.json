@@ -52,6 +52,10 @@
         ]
     },
     "explorer.confirmDragAndDrop": false,
+    "files.associations": {
+        "appsettings*.json": "jsonc"
+    },
+    "gitlens.views.commitDetails.files.layout": "list",
     "javascript.preferences.importModuleSpecifier": "relative",
     "javascript.updateImportsOnFileMove.enabled": "always",
     "nixEnvSelector.nixFile": "default.nix",

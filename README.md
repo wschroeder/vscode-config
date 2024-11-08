@@ -30,6 +30,7 @@ This is probably the same setup approach as for VS Code.
    * Run on Save by emeraldwalk
    * ElixirLS: Elixir support and debugger by JakeBecker
    * VS Code Wiki by Yunseok
+   * GitLens -- Git supercharged by eamodio
 
 6. Profit!
 
