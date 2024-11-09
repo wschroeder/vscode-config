@@ -55,6 +55,13 @@
     "files.associations": {
         "appsettings*.json": "jsonc"
     },
+    "gitlens.cloudIntegrations.enabled": false,
+    "gitlens.cloudPatches.enabled": false,
+    "gitlens.integrations.enabled": false,
+    "gitlens.launchpad.indicator.enabled": false,
+    "gitlens.showWelcomeOnInstall": false,
+    "gitlens.showWhatsNewAfterUpgrades": false,
+    "gitlens.views.launchpad.enabled": false,
     "gitlens.views.commitDetails.files.layout": "list",
     "javascript.preferences.importModuleSpecifier": "relative",
     "javascript.updateImportsOnFileMove.enabled": "always",
