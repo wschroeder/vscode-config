@@ -32,6 +32,7 @@ This is probably the same setup approach as for VS Code.
    * VS Code Wiki by Yunseok
    * GitLens -- Git supercharged by eamodio
    * Calva: Clojure & ClojureScript Interactive Programming by betterthantomorrow
+   * vscodeScript by lyr-2000
 
 6. Profit!
 

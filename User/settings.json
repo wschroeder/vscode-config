@@ -6,6 +6,28 @@
             "customJackInCommandLine": "boot repl -p JACK-IN-NREPL-PORT -s wait 2>&1"
         }
     ],
+    "custom-kit.commands": [
+        {
+            "title": "william_split_elixir_pipes",
+            "when": "${fileExtname} == '.ex' || ${fileExtname} == '.exs'",
+            "command": [
+                "let text = window.activeTextEditor.document.lineAt(window.activeTextEditor.selection.active.line).text || '';",
+                "if (!text.includes('|>')) return;",
+                "let indentation = text.match(/^\\s*/)[0] || '';",
+                "const prefixPart = text.substring(0, text.indexOf('|>'));",
+                "if (prefixPart.includes('=')) {",
+                "    text = text.replace(/(^.*=)/, '$1\\n' + indentation)",
+                "    indentation += ' '",
+                "}",
+                "text = text.replace(/\\s*\\|>\\s*/g, '\\n' + indentation + '|> ');",
+                "codeCmd('editor.action.deleteLines');",
+                "codeCmd('cursorUp');",
+                "copy(text);",
+                "codeCmd('editor.action.insertLineAfter');",
+                "paste();"
+            ]
+        }
+    ],
     "diffEditor.ignoreTrimWhitespace": true,
     "editor.inlineSuggest.enabled": true,
     "editor.renderWhitespace": "none",
@@ -138,6 +160,18 @@
                     "args": { "snippet": "|> IO.inspect(limit: :infinity, pretty: true)" }
                 }
             ]
+        },
+        {
+            "before": ["g", "S"],
+            "commands": [
+                {
+                    "command": "custom-kit.runCommand",
+                    "args": {
+                        "title": "william_split_elixir_pipes"
+                    }
+                }
+            ],
+            "when": "editorTextFocus && vim.mode == 'Normal'"
         }
     ],
     "vim.operatorPendingModeKeyBindings": [
