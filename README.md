@@ -31,6 +31,7 @@ This is probably the same setup approach as for VS Code.
    * ElixirLS: Elixir support and debugger by JakeBecker
    * VS Code Wiki by Yunseok
    * GitLens -- Git supercharged by eamodio
+   * Calva: Clojure & ClojureScript Interactive Programming by betterthantomorrow
 
 6. Profit!
 

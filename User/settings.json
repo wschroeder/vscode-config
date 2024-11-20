@@ -1,4 +1,12 @@
 {
+    "calva.replConnectSequences": [
+        {
+            "name": "Boot",
+            "projectType": "custom",
+            "customJackInCommandLine": "boot repl -p JACK-IN-NREPL-PORT -s wait 2>&1"
+        }
+    ],
+    "diffEditor.ignoreTrimWhitespace": true,
     "editor.inlineSuggest.enabled": true,
     "editor.renderWhitespace": "none",
     "editor.tabSize": 2,
