@@ -183,7 +183,7 @@
     "vim.visualModeKeyBindingsNonRecursive": [
         {
             "before": ["="],
-            "commands": ["editor.action.reindentselectedlines", "extension.vim_escape"],
+            "commands": ["editor.action.reindentselectedlines", "extension.vim_escape"]
         }
     ],
     "workbench.editor.enablePreview": false,
