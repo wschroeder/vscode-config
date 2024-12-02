@@ -1,208 +1,264 @@
 {
-    "calva.replConnectSequences": [
-        {
-            "name": "Boot",
-            "projectType": "custom",
-            "customJackInCommandLine": "boot repl -p JACK-IN-NREPL-PORT -s wait 2>&1"
-        }
-    ],
-    "custom-kit.commands": [
-        {
-            "title": "william_split_elixir_pipes",
-            "when": "${fileExtname} == '.ex' || ${fileExtname} == '.exs'",
-            "command": [
-                "let text = window.activeTextEditor.document.lineAt(window.activeTextEditor.selection.active.line).text || '';",
-                "if (!text.includes('|>')) return;",
-                "let indentation = text.match(/^\\s*/)[0] || '';",
-                "const prefixPart = text.substring(0, text.indexOf('|>'));",
-                "if (prefixPart.includes('=')) {",
-                "    text = text.replace(/(^.*=)/, '$1\\n' + indentation)",
-                "    indentation += ' '",
-                "}",
-                "text = text.replace(/\\s*\\|>\\s*/g, '\\n' + indentation + '|> ');",
-                "codeCmd('editor.action.deleteLines');",
-                "codeCmd('cursorUp');",
-                "copy(text);",
-                "codeCmd('editor.action.insertLineAfter');",
-                "paste();"
-            ]
-        }
-    ],
-    "diffEditor.ignoreTrimWhitespace": true,
-    "editor.inlineSuggest.enabled": true,
-    "editor.renderWhitespace": "none",
-    "editor.tabSize": 2,
-    "editor.tokenColorCustomizations": {
-        "textMateRules": [
-            {
-                "scope": "heading.1.markdown entity.name.section.markdown, heading.1.markdown punctuation.definition.heading.markdown",
-                "settings": {
-                    "foreground": "#9cecfb",
-                    "fontStyle": "bold"
-                }
-            },
-            {
-                "scope": "heading.2.markdown entity.name.section.markdown, heading.2.markdown punctuation.definition.heading.markdown",
-                "settings": {
-                    "foreground": "#83a4d4"
-                }
-            },
-            {
-                "scope": "heading.3.markdown entity.name.section.markdown, heading.3.markdown punctuation.definition.heading.markdown",
-                "settings": {
-                    "foreground": "#616e7c"
-                }
-            },
-            {
-                "scope": "heading.4.markdown entity.name.section.markdown, heading.4.markdown punctuation.definition.heading.markdown",
-                "settings": {
-                    "foreground": "#404040"
-                }
-            },
-            {
-                "scope": "markup.fenced_code.block.markdown",
-                "settings": {
-                    "foreground": "#98C379"
-                }
-            }
-        ]
-    },
-    "editor.trimAutoWhitespace": true,
-    "editor.unicodeHighlight.ambiguousCharacters": false,
-    "editor.unicodeHighlight.invisibleCharacters": false,
-    "elixirLS.envVariables": {},
-    "elixirLS.fetchDeps": true,
-    "elixirLS.mixEnv": "dev",
-    "emeraldwalk.runonsave": {
-        "commands": [
-            {
-                "match": "\\.(ts|tsx|js|jsx)$",
-                "cmd": "nix-shell --command \"eslint --fix ${file}\""
-            }
-        ]
-    },
-    "explorer.confirmDragAndDrop": false,
-    "files.associations": {
-        "appsettings*.json": "jsonc"
-    },
-    "gitlens.cloudIntegrations.enabled": false,
-    "gitlens.cloudPatches.enabled": false,
-    "gitlens.integrations.enabled": false,
-    "gitlens.launchpad.indicator.enabled": false,
-    "gitlens.showWelcomeOnInstall": false,
-    "gitlens.showWhatsNewAfterUpgrades": false,
-    "gitlens.views.launchpad.enabled": false,
-    "gitlens.views.commitDetails.files.layout": "list",
-    "javascript.preferences.importModuleSpecifier": "relative",
-    "javascript.updateImportsOnFileMove.enabled": "always",
-    "nixEnvSelector.nixFile": "default.nix",
-    "security.workspace.trust.untrustedFiles": "open",
-    "terminal.integrated.fontFamily": "agave Nerd Font Mono, monospace",
-    "terminal.integrated.fontSize": 14,
-    "terminal.integrated.macOptionIsMeta": true,
-    "typescript.preferences.importModuleSpecifier": "relative",
-    "typescript.updateImportsOnFileMove.enabled": "always",
-    "vim.useSystemClipboard": true,
-    "vim.easymotion": true,
-    "vim.ignorecase": false,
-    "vim.leader": "<space>",
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": ["=", "="],
-            "commands": ["editor.action.reindentselectedlines"]
-        },
-        {
-            "before": ["u"],
-            "commands": ["undo"]
-        },
-        {
-            "before": ["<C-r>"],
-            "commands": ["redo"]
-        },
-        {
-            "before": ["%"],
-            "commands": ["editor.action.jumpToBracket"]
-        },
-        {
-            "before": ["<leader>", "l"],
-            "commands": ["wiki.openWiki"]
-        },
-        {
-            "before": ["<leader>", "s"],
-            "commands": ["wiki.searchWiki"]
-        },
-        {
-            "before": ["<leader>", "v", "d"],
-            "commands": [
-                {
-                    "command": "workbench.action.terminal.new"
-                },
-                {
-                    "command": "workbench.action.terminal.sendSequence",
-                    "args": {
-                        "text": "cd \"${userHome}/Library/Application Support/$(if echo '${execPath}' | grep -q 'Cursor'; then echo Cursor; else echo Code; fi)\"\r"
-                    }
-                }
-            ]
-        },
-        {
-            "before": ["<leader>", "v", "e"],
-            "commands": ["workbench.action.openSettingsJson"]
-        },
-        {
-            "before": ["<leader>", "i"],
-            "commands": [
-                {
-                    "command": "editor.action.insertLineAfter"
-                },
-                {
-                    "command": "editor.action.insertSnippet",
-                    "args": { "snippet": "|> IO.inspect(limit: :infinity, pretty: true)" }
-                }
-            ]
-        },
-        {
-            "before": ["g", "S"],
-            "commands": [
-                {
-                    "command": "custom-kit.runCommand",
-                    "args": {
-                        "title": "william_split_elixir_pipes"
-                    }
-                }
-            ],
-            "when": "editorTextFocus && vim.mode == 'Normal'"
-        }
-    ],
-    "vim.operatorPendingModeKeyBindings": [
-        {
-            "before": ["z"],
-            "after": ["t", "_"]
-        }
-    ],
-    "vim.visualModeKeyBindingsNonRecursive": [
-        {
-            "before": ["="],
-            "commands": ["editor.action.reindentselectedlines", "extension.vim_escape"]
-        }
-    ],
-    "workbench.editor.enablePreview": false,
-    "[elixir]": {
-        "editor.defaultFormatter": "JakeBecker.elixir-ls"
-    },
-    "[python]": {
-        "editor.formatOnType": true
-    },
-    "[json]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "[jsonc]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "[typescript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
-    },
-    "[typescriptreact]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
+  "calva.replConnectSequences": [
+    {
+      "name": "Boot",
+      "projectType": "custom",
+      "customJackInCommandLine": "boot repl -p JACK-IN-NREPL-PORT -s wait 2>&1"
     }
+  ],
+  "composer.defaultMode": "agent",
+  "custom-kit.commands": [
+    {
+      "title": "william_split_elixir_pipes",
+      "when": "${fileExtname} == '.ex' || ${fileExtname} == '.exs'",
+      "command": [
+        "let text = window.activeTextEditor.document.lineAt(window.activeTextEditor.selection.active.line).text || '';",
+        "if (!text.includes('|>')) return;",
+        "let indentation = text.match(/^\\s*/)[0] || '';",
+        "const prefixPart = text.substring(0, text.indexOf('|>'));",
+        "if (prefixPart.includes('=')) {",
+        "    text = text.replace(/(^.*=)/, '$1\\n' + indentation)",
+        "    indentation += ' '",
+        "}",
+        "text = text.replace(/\\s*\\|>\\s*/g, '\\n' + indentation + '|> ');",
+        "codeCmd('editor.action.deleteLines');",
+        "codeCmd('cursorUp');",
+        "copy(text);",
+        "codeCmd('editor.action.insertLineAfter');",
+        "paste();"
+      ]
+    }
+  ],
+  "diffEditor.ignoreTrimWhitespace": true,
+  "editor.inlineSuggest.enabled": true,
+  "editor.renderWhitespace": "none",
+  "editor.tabSize": 2,
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "heading.1.markdown entity.name.section.markdown, heading.1.markdown punctuation.definition.heading.markdown",
+        "settings": {
+          "foreground": "#9cecfb",
+          "fontStyle": "bold"
+        }
+      },
+      {
+        "scope": "heading.2.markdown entity.name.section.markdown, heading.2.markdown punctuation.definition.heading.markdown",
+        "settings": {
+          "foreground": "#83a4d4"
+        }
+      },
+      {
+        "scope": "heading.3.markdown entity.name.section.markdown, heading.3.markdown punctuation.definition.heading.markdown",
+        "settings": {
+          "foreground": "#616e7c"
+        }
+      },
+      {
+        "scope": "heading.4.markdown entity.name.section.markdown, heading.4.markdown punctuation.definition.heading.markdown",
+        "settings": {
+          "foreground": "#404040"
+        }
+      },
+      {
+        "scope": "markup.fenced_code.block.markdown",
+        "settings": {
+          "foreground": "#98C379"
+        }
+      }
+    ]
+  },
+  "editor.trimAutoWhitespace": true,
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+  "editor.unicodeHighlight.invisibleCharacters": false,
+  "elixirLS.envVariables": {},
+  "elixirLS.fetchDeps": true,
+  "elixirLS.mixEnv": "dev",
+  "emeraldwalk.runonsave": {
+    "commands": [
+      {
+        "match": "\\.(ts|tsx|js|jsx)$",
+        "cmd": "nix-shell --command \"eslint --fix ${file}\""
+      }
+    ]
+  },
+  "explorer.confirmDragAndDrop": false,
+  "files.associations": {
+    "appsettings*.json": "jsonc"
+  },
+  "gitlens.cloudIntegrations.enabled": false,
+  "gitlens.cloudPatches.enabled": false,
+  "gitlens.integrations.enabled": false,
+  "gitlens.launchpad.indicator.enabled": false,
+  "gitlens.showWelcomeOnInstall": false,
+  "gitlens.showWhatsNewAfterUpgrades": false,
+  "gitlens.views.launchpad.enabled": false,
+  "gitlens.views.commitDetails.files.layout": "list",
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "nixEnvSelector.nixFile": "default.nix",
+  "security.workspace.trust.untrustedFiles": "open",
+  "terminal.integrated.fontFamily": "agave Nerd Font Mono, monospace",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.macOptionIsMeta": true,
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "vim.useSystemClipboard": true,
+  "vim.easymotion": true,
+  "vim.ignorecase": false,
+  "vim.leader": "<space>",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "=",
+        "="
+      ],
+      "commands": [
+        "editor.action.reindentselectedlines"
+      ]
+    },
+    {
+      "before": [
+        "u"
+      ],
+      "commands": [
+        "undo"
+      ]
+    },
+    {
+      "before": [
+        "<C-r>"
+      ],
+      "commands": [
+        "redo"
+      ]
+    },
+    {
+      "before": [
+        "%"
+      ],
+      "commands": [
+        "editor.action.jumpToBracket"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "l"
+      ],
+      "commands": [
+        "wiki.openWiki"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "s"
+      ],
+      "commands": [
+        "wiki.searchWiki"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "v",
+        "d"
+      ],
+      "commands": [
+        {
+          "command": "workbench.action.terminal.new"
+        },
+        {
+          "command": "workbench.action.terminal.sendSequence",
+          "args": {
+            "text": "cd \"${userHome}/Library/Application Support/$(if echo '${execPath}' | grep -q 'Cursor'; then echo Cursor; else echo Code; fi)\"\r"
+          }
+        }
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "v",
+        "e"
+      ],
+      "commands": [
+        "workbench.action.openSettingsJson"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "i"
+      ],
+      "commands": [
+        {
+          "command": "editor.action.insertLineAfter"
+        },
+        {
+          "command": "editor.action.insertSnippet",
+          "args": {
+            "snippet": "|> IO.inspect(limit: :infinity, pretty: true)"
+          }
+        }
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "S"
+      ],
+      "commands": [
+        {
+          "command": "custom-kit.runCommand",
+          "args": {
+            "title": "william_split_elixir_pipes"
+          }
+        }
+      ],
+      "when": "editorTextFocus && vim.mode == 'Normal'"
+    }
+  ],
+  "vim.operatorPendingModeKeyBindings": [
+    {
+      "before": [
+        "z"
+      ],
+      "after": [
+        "t",
+        "_"
+      ]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "="
+      ],
+      "commands": [
+        "editor.action.reindentselectedlines",
+        "extension.vim_escape"
+      ]
+    }
+  ],
+  "workbench.editor.enablePreview": false,
+  "[elixir]": {
+    "editor.defaultFormatter": "JakeBecker.elixir-ls"
+  },
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  }
 }
